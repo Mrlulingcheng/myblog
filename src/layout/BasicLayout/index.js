@@ -10,7 +10,7 @@ import {
     VideoCameraOutlined,
     UploadOutlined
 } from "@ant-design/icons";
-import "./index.less"
+import style from "./index.less"
 const {
     Header,
     Sider,
@@ -32,7 +32,7 @@ class BasicLayout extends React.Component {
         return (
             <Layout>
         <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
-          <div className="logo" />
+          <div className={style.logo} />
           <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
             <Menu.Item key="1">
               <UserOutlined />
@@ -48,9 +48,9 @@ class BasicLayout extends React.Component {
             </Menu.Item>{" "}
           </Menu>{" "}
         </Sider>{" "}
-        <Layout className="site-layout">
+        <Layout className={style["site-layout"]}>
           <Header
-            className="site-layout-background"
+            className={style["site-layout-background"]}
             style={{
               padding: 0
             }}
@@ -59,13 +59,13 @@ class BasicLayout extends React.Component {
             {React.createElement(
               this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
               {
-                className: "trigger",
+                className: `${style.trigger}`,
                 onClick: this.toggle
               }
             )}{" "}
           </Header>{" "}
           <Content
-            className="site-layout-background"
+            className={style["site-layout-background"]}
             style={{
               margin: "24px 16px",
               padding: 24,
