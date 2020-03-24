@@ -24,7 +24,7 @@ const smp = new SpeedMeasurePlugin();
 const config = merge(common, {
     mode: 'production',
     output: {
-        filename: '[name].[chunkhash:8].js',
+        filename: 'js/[name].[chunkhash:8].js',
         path: __dirname + '/dist',
         publicPath: "/"
     },
@@ -35,7 +35,8 @@ const config = merge(common, {
     plugins: [
         new BundleAnalyzerPlugin(),
         new MiniCssExtractPlugin({ //将css提取成单独的文件
-            filename: `[name][contenthash:8].css`
+            filename: `css/[name][contenthash:8].css`,
+
         }),
         new CleanWebpackPlugin(), //自动清理重复build后的文件（dist目录下）
     ],

@@ -49,6 +49,8 @@ module.exports = {
                 loader: 'url-loader',
                 options: {
                     limit: 1024,
+                    publicPath:'/public/image/',
+                    outputPath:'public/image/',
                     exclude: [
                         path.resolve(__dirname, '../node_modules')
                     ]
@@ -56,7 +58,13 @@ module.exports = {
             }]
         }, {
             test: /\.(woff|woff2|eot|ttf|otf)$/,
-            use: 'file-loader'
+            use: [{
+                loader:'file-loader',
+                options: {
+                    publicPath:'/public/fonts/',
+                    outputPath:'public/fonts/',
+                }
+            }]
         }]
     },
     plugins: [
