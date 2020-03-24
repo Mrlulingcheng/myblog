@@ -17,13 +17,15 @@ const config = merge(common, {
     module: {
         rules: [{
             test: /\.less$/,
+            exclude:[/node_modules/],
             use: [{
                     loader: "style-loader"
                 },
-                {
+                {//参考地址https://www.npmjs.com/package/css-loader
                     loader: "css-loader",
                     options: {
-                        importLoaders: 2,
+                        url:true,//设置在css中使用webpack的前缀代替路径，可以修改为方法，具体参考
+                        modules:true, //开启css模块化
                     }
                 }, {
                     loader: "less-loader",
@@ -32,7 +34,25 @@ const config = merge(common, {
                     }
                 }
             ]
-        }, ]
+        },{
+            test: /\.less$/,
+            exclude:[/src/],
+            use: [{
+                    loader: "style-loader"
+                },
+                {
+                    loader: "css-loader",
+                    options: {
+                        url:true,
+                    }
+                }, {
+                    loader: "less-loader",
+                    options: {
+                        javascriptEnabled: true
+                    }
+                }
+            ]
+        },]
     }
 })
 

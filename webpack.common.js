@@ -48,7 +48,10 @@ module.exports = {
             use: [{
                 loader: 'url-loader',
                 options: {
-                    limit: 10240
+                    limit: 1024,
+                    exclude: [
+                        path.resolve(__dirname, '../node_modules')
+                    ]
                 }
             }]
         }, {

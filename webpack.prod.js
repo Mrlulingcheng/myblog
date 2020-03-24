@@ -4,7 +4,7 @@
  *      webpack生产环境配置
  * 
  */
-
+const path = require('path')
 //webpack配置合并工具
 const merge = require('webpack-merge');
 //webpack公共配置
@@ -15,7 +15,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const {
     CleanWebpackPlugin
 } = require('clean-webpack-plugin');
-
 // 分析打包时间
 const SpeedMeasurePlugin = require("speed-measure-webpack-plugin")
 //分析打包内容
@@ -43,13 +42,15 @@ const config = merge(common, {
     module: {
         rules: [{
             test: /\.less$/,
+            include:[/src/],
             use: [
                 MiniCssExtractPlugin.loader,
                 {
                     loader: "css-loader",
                     options: {
-                        // sourceMap: true,
+                        url:true,
                         importLoaders: 2,
+                        modules:true,//开启css模块化,
                     }
                 }, {
                     loader: "less-loader",
@@ -59,7 +60,29 @@ const config = merge(common, {
                     }
                 }
             ]
-        }, ]
+        },
+        {
+            test: /\.less$/,
+            include:[/node_modules/],
+            use: [
+                MiniCssExtractPlugin.loader,
+                {
+                    loader: "css-loader",
+                    options: {
+                        url:true,
+                        importLoaders: 2,
+                        // modules:true, //开启css模块化
+                    }
+                }, {
+                    loader: "less-loader",
+                    options: {
+                        // sourceMap: true,
+                        javascriptEnabled: true
+                    }
+                }
+            ]
+        },
+    ]
     }
 
 })
