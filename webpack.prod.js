@@ -40,49 +40,50 @@ const config = merge(common, {
         new CleanWebpackPlugin(), //自动清理重复build后的文件（dist目录下）
     ],
     module: {
-        rules: [{
-            test: /\.less$/,
-            include:[/src/],
-            use: [
-                MiniCssExtractPlugin.loader,
-                {
-                    loader: "css-loader",
-                    options: {
-                        url:true,
-                        importLoaders: 2,
-                        modules:true,//开启css模块化,
+        rules: [
+            //     {
+            //     test: /\.less$/,
+            //     include:[/src/],
+            //     use: [
+            //         MiniCssExtractPlugin.loader,
+            //         {
+            //             loader: "css-loader",
+            //             options: {
+            //                 url:true,
+            //                 importLoaders: 2,
+            //                 modules:true,//开启css模块化,
+            //             }
+            //         }, {
+            //             loader: "less-loader",
+            //             options: {
+            //                 // sourceMap: true,
+            //                 javascriptEnabled: true
+            //             }
+            //         }
+            //     ]
+            // },
+            {
+                test: /\.less$/,
+                // include:[/node_modules/],
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    {
+                        loader: "css-loader",
+                        options: {
+                            url: true,
+                            importLoaders: 2,
+                            // modules:true, //开启css模块化
+                        }
+                    }, {
+                        loader: "less-loader",
+                        options: {
+                            // sourceMap: true,
+                            javascriptEnabled: true
+                        }
                     }
-                }, {
-                    loader: "less-loader",
-                    options: {
-                        // sourceMap: true,
-                        javascriptEnabled: true
-                    }
-                }
-            ]
-        },
-        {
-            test: /\.less$/,
-            include:[/node_modules/],
-            use: [
-                MiniCssExtractPlugin.loader,
-                {
-                    loader: "css-loader",
-                    options: {
-                        url:true,
-                        importLoaders: 2,
-                        // modules:true, //开启css模块化
-                    }
-                }, {
-                    loader: "less-loader",
-                    options: {
-                        // sourceMap: true,
-                        javascriptEnabled: true
-                    }
-                }
-            ]
-        },
-    ]
+                ]
+            },
+        ]
     }
 
 })

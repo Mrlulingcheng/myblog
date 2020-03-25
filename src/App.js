@@ -1,16 +1,22 @@
 import React from 'react'
-import {
-    Button
-} from 'antd';
-import BasicLayout from '@layout/BasicLayout/index'
 import style from './App.less'
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+} from "react-router-dom"
 
+import User from './pages/User'
+import Article from './pages/Article'
+import BasicLayout from "@/layout/BasicLayout/BasicLayout"
 function App() {
     return (
-        <div>
-            <div className={style.pic}></div>
-            <BasicLayout></BasicLayout>
-        </div>
+        <Router>
+            <Route path="/">
+                <BasicLayout></BasicLayout>
+            </Route>
+        </Router>
     )
 }
 
