@@ -3,13 +3,17 @@ const path = require('path')
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 
 console.log("(===================" + process.env.NODE_ENV + "===============)")
-
+/**
+ * TODO
+ * 需要配置将less配置的目标文件详细化指定antd
+ * 
+ */
 module.exports = {
     entry: "./src/index.js", //入口文件
     resolve: {
         alias: {
             '@less': path.resolve(__dirname, 'src'),
-            '@layout': path.resolve(__dirname, 'src/layout'),
+            '@': path.resolve(__dirname, 'src'),
             "@public": path.resolve(__dirname, 'public'),
             // '@api': path.resolve(__dirname, 'src/api'),
             // '@components': path.resolve(__dirname, 'src/components')

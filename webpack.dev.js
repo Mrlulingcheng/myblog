@@ -13,46 +13,50 @@ const config = merge(common, {
     devtool: 'inline-source-map', //开启源码映射
     devServer: { //开启热重载
         contentBase: "./dist",
+        historyApiFallback: true
     },
     module: {
-        rules: [{
-            test: /\.less$/,
-            exclude:[/node_modules/],
-            use: [{
-                    loader: "style-loader"
-                },
-                {//参考地址https://www.npmjs.com/package/css-loader
-                    loader: "css-loader",
-                    options: {
-                        url:true,//设置在css中使用webpack的前缀代替路径，可以修改为方法，具体参考
-                        modules:true, //开启css模块化
+        rules: [
+            //     { //配置项目中自己写的less
+            //     test: /\.less$/,
+            //     exclude: [/node_modules/],
+            //     use: [{
+            //             loader: "style-loader"
+            //         },
+            //         { //参考地址https://www.npmjs.com/package/css-loader
+            //             loader: "css-loader",
+            //             options: {
+            //                 url: true, //设置在css中使用webpack的前缀代替路径，可以修改为方法，具体参考
+            //                 modules: true, //开启css模块化
+            //             }
+            //         }, {
+            //             loader: "less-loader",
+            //             options: {
+            //                 javascriptEnabled: true
+            //             }
+            //         }
+            //     ]
+            // }, 
+            { //配置antd的less
+                test: /\.less$/,
+                // exclude: [/src/],
+                use: [{
+                        loader: "style-loader"
+                    },
+                    {
+                        loader: "css-loader",
+                        options: {
+                            url: true,
+                        }
+                    }, {
+                        loader: "less-loader",
+                        options: {
+                            javascriptEnabled: true
+                        }
                     }
-                }, {
-                    loader: "less-loader",
-                    options: {
-                        javascriptEnabled: true
-                    }
-                }
-            ]
-        },{
-            test: /\.less$/,
-            exclude:[/src/],
-            use: [{
-                    loader: "style-loader"
-                },
-                {
-                    loader: "css-loader",
-                    options: {
-                        url:true,
-                    }
-                }, {
-                    loader: "less-loader",
-                    options: {
-                        javascriptEnabled: true
-                    }
-                }
-            ]
-        },]
+                ]
+            },
+        ]
     }
 })
 
