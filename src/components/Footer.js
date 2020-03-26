@@ -2,18 +2,18 @@ import React from 'react'
 import FilterLink from '@/redux/containers/FilterLink'
 
 const Footer = () => (
-  <p>
+    <p>
     Show:
-    {' '}
-    <FilterLink filter="SHOW_ALL">
+    {" "}
+    <FilterLink filter="all">
       All
     </FilterLink>
-    {', '}
-    <FilterLink filter="SHOW_ACTIVE">
+    {", "}
+    <FilterLink filter="active">
       Active
     </FilterLink>
-    {', '}
-    <FilterLink filter="SHOW_COMPLETED">
+    {", "}
+    <FilterLink filter="completed">
       Completed
     </FilterLink>
   </p>
